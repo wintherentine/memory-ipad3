@@ -19,7 +19,7 @@ function initGame() {
   attempts = 0;
   attemptsDisplay.innerHTML = "Aantal pogingen: 0";
 
-  for (var r=0;r<6;r++) {
+for (var r=0;r<6;r++) {
   var row = document.createElement("div");
   row.className = "row";
   for (var c=0;c<6;c++) {
