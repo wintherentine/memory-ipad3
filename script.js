@@ -20,19 +20,23 @@ function initGame() {
   attemptsDisplay.innerHTML = "Aantal pogingen: 0";
 
   for (var r=0;r<6;r++) {
-    var row = document.createElement("div");
-    row.className = "row";
-    for (var c=0;c<6;c++) {
-      var index = r*6 + c;
-      var card = document.createElement("div");
-      card.className = "card";
-      card.style.backgroundImage = "url('images/back.jpg')";
-      card.setAttribute("data-value", cards[index]);
-      card.onclick = flipCard;
-      row.appendChild(card);
-    }
-    board.appendChild(row);
+  var row = document.createElement("div");
+  row.className = "row";
+  for (var c=0;c<6;c++) {
+    var card = document.createElement("div");
+    card.className = "card";
+
+    var inner = document.createElement("div");
+    inner.className = "card-inner";
+    inner.style.backgroundImage = "url('images/back.jpg')";
+    inner.setAttribute("data-value", cards[r*6+c]);
+    inner.onclick = flipCard;
+
+    card.appendChild(inner);
+    row.appendChild(card);
   }
+  board.appendChild(row);
+}
 }
 
 function flipCard() {
