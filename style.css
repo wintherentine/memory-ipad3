@@ -9,18 +9,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 100vh;
-  padding: 5px;
+  padding: 10px;
 }
+
 #sidebar {
   width: 180px;
   margin-left: 10px;
-  flex-shrink: 0;
   background: #ffffffcc;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
+  flex-shrink: 0;
 }
 
 h1 {
@@ -45,8 +45,7 @@ h1 {
 }
 
 #game-board {
-  width: calc(100vw - 200px); /* reserveer sidebar */
-  max-width: 95vh;
+  width: 600px;
 }
 
 .row {
@@ -56,8 +55,8 @@ h1 {
 
 .card {
   float: left;
-  width: 15%;            /* 6 kaarten per rij */
-  padding-bottom: 15%;   /* hoogte = breedte */
+  width: 15%;         /* 6 kaarten per rij */
+  padding-bottom: 15%; /* hoogte = breedte */
   margin: 0.5%;
   border-radius: 6px;
   background-color: #1e90ff;
@@ -65,9 +64,8 @@ h1 {
   background-position: center;
   border: 2px solid white;
   cursor: pointer;
-  box-sizing: border-box; /* belangrijk voor padding/marge */
+  box-sizing: border-box;
 }
-
 
 .flipped {
   border: 2px solid #1e90ff;
@@ -85,7 +83,6 @@ h1 {
   }
   #game-board {
     width: 95vw;
-    max-width: 95vw;
   }
   .card {
     width: 15%;
@@ -93,4 +90,3 @@ h1 {
     margin: 0.5%;
   }
 }
-
