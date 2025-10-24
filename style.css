@@ -6,18 +6,21 @@ body {
   text-align: center;
 }
 #wrapper {
-  display: inline-block;
+  display: flex;
+  justify-content: center; /* centraalt horizontaal */
+  align-items: flex-start;
   margin-top: 10px;
 }
 #sidebar {
   display: inline-block;
   vertical-align: top;
   width: 180px;
+  margin-left: 10px;
+  flex-shrink: 0;
   padding: 10px;
   background: #ffffffcc;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-left: 10px;
 }
 h1 {
   color: #1e90ff;
@@ -38,30 +41,30 @@ h1 {
   cursor: pointer;
 }
 #game-board {
-  display: inline-block;
-  width: 80vw;
-  max-width: 600px;
-  background: #dde5ec;
-  padding: 5px;
-  border-radius: 8px;
+  width: calc(100vw - 200px); /* 200px voor sidebar + margin */
+  height: 95vh;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 5px;
 }
+
 .row {
   display: flex;
   justify-content: center;
 }
 
 .card {
-  width: 13%;
-  margin: 0.5%;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* houd vierkant, wordt ondersteund op moderne browsers */
   border-radius: 6px;
-  height: 0;
-  padding-bottom: 13%;
   background-color: #1e90ff;
   cursor: pointer;
   background-size: cover;
   background-position: center;
   border: 2px solid white;
 }
+
 .flipped {
   border: 2px solid #1e90ff;
 }
