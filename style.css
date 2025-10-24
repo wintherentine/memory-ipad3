@@ -69,17 +69,13 @@ h1 {
     clear: both;
 }
 
-.row {
-    /* Verwijderd: clear: both; - dit is onnodig en wordt opgelost door de clearfix op #game-board */
-}
-
 /* 6x6 Portretmodus (moet passen op het scherm) */
 .card {
     float: left;
-    /* NIEUW: Berekening voor 6 kaarten ZONDER MARGES buiten de 100% breedte */
+    /* Zorg voor EXACT 1/6e breedte en geen marges om te passen! */
     margin: 0; 
-    width: 16.666%; /* 100% / 6 = 16.666% */
-    padding-bottom: 16.666%; /* Zorg ervoor dat het vierkant blijft */
+    width: 16.666%;
+    padding-bottom: 16.666%; 
     position: relative;
     box-sizing: border-box;
 }
