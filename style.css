@@ -44,25 +44,24 @@ h1 {
 }
 
 #game-board {
-  display: block;
-  width: 90vw;
-  max-width: 750px;
+  width: 600px; /* vaste breedte voor 6 kaarten per rij */
+  max-width: 90vw; /* responsive */
   background: #dde5ec;
   padding: 5px;
   border-radius: 8px;
 }
 
 .row {
-  display: block;
   clear: both;
 }
 
 .card {
   float: left;
-  width: 16%;       /* 6 kaarten per rij */
+  width: 16.66%;       /* 6 kaarten per rij = 100/6 */
+  padding-bottom: 16.66%; /* hoogte = breedte → vierkant */
+  margin: 0;
   position: relative;
-  margin: 0.5%;
-  padding-bottom: 16%; /* hoogte = breedte → vierkant */
+  box-sizing: border-box;
 }
 
 .card-inner {
@@ -73,12 +72,11 @@ h1 {
   height: 100%;
   border-radius: 6px;
   background-color: #1e90ff;
-  background-image: url('images/back-logo.png'); /* achterkant logo/patroon */
+  background-image: url('images/back-logo.png');
   background-size: cover;
   background-position: center;
   border: 2px solid white;
   cursor: pointer;
-  box-sizing: border-box;
 }
 
 .flipped .card-inner {
