@@ -10,7 +10,7 @@ var attempts = 0;
 function initGame() {
   var values = [];
   for (var i=1;i<=18;i++) values.push(i); // 18 paren
-  cards = values.concat(values); // 36 kaarten totaal
+  cards = values.concat(values); // totaal 36 kaarten
   cards.sort(function(){ return 0.5 - Math.random(); });
 
   board.innerHTML = "";
@@ -44,27 +44,27 @@ function flipCard() {
     if (flipped.length===2) {
       attempts++;
       attemptsDisplay.innerHTML = "Aantal pogingen: "+attempts;
-      setTimeout(checkMatch, 1000); // 1 seconde foute combinaties
+      setTimeout(checkMatch, 1000); // foute combinaties 1 seconde zichtbaar
     }
   }
 }
 
 function checkMatch() {
-  var a = flipped[0];
-  var b = flipped[1];
-  if (a.getAttribute("data-value") === b.getAttribute("data-value")) {
+  var a=flipped[0];
+  var b=flipped[1];
+  if (a.getAttribute("data-value")===b.getAttribute("data-value")) {
     matched.push(a,b);
   } else {
-    a.className = "card";
-    b.className = "card";
-    a.style.backgroundImage = "url('images/back.jpg')";
-    b.style.backgroundImage = "url('images/back.jpg')";
+    a.className="card";
+    b.className="card";
+    a.style.backgroundImage="url('images/back.jpg')";
+    b.style.backgroundImage="url('images/back.jpg')";
   }
-  flipped = [];
-  if (matched.length === cards.length) {
+  flipped=[];
+  if (matched.length===cards.length) {
     alert("Fantastisch! 🎉 Je hebt alles gevonden in "+attempts+" pogingen!");
   }
 }
 
-resetButton.onclick = initGame;
+resetButton.onclick=initGame;
 initGame();
