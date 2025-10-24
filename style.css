@@ -45,8 +45,8 @@ h1 {
 }
 
 #game-board {
-  width: calc(100vw - 200px); /* reserveer ruimte voor sidebar */
-  max-width: 95vh; /* past binnen schermhoogte */
+  width: calc(100vw - 200px); /* reserveer sidebar */
+  max-width: 95vh;
 }
 
 .row {
@@ -56,8 +56,8 @@ h1 {
 
 .card {
   float: left;
-  width: 15%;           /* 6 kaarten per rij + marge */
-  padding-bottom: 15%;  /* hoogte = breedte */
+  width: 15%;            /* 6 kaarten per rij */
+  padding-bottom: 15%;   /* hoogte = breedte */
   margin: 0.5%;
   border-radius: 6px;
   background-color: #1e90ff;
@@ -65,7 +65,9 @@ h1 {
   background-position: center;
   border: 2px solid white;
   cursor: pointer;
+  box-sizing: border-box; /* belangrijk voor padding/marge */
 }
+
 
 .flipped {
   border: 2px solid #1e90ff;
