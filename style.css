@@ -3,27 +3,27 @@ body {
     background: #eef2f3;
     margin: 0;
     padding: 0;
-    text-align: center; /* Gebruikt voor het centreren van de inline-block #wrapper */
+    text-align: center;
 }
 
-/* De wrapper wordt gecentreerd door de body text-align: center en zichzelf als inline-block */
+/* De wrapper is nu een container voor de main-container */
 #wrapper {
-    display: inline-block;
+    display: block; 
+    width: 100%;
     margin-top: 10px;
-    overflow: hidden;
 }
 
-#main-container {
-    /* Blokkeer de float/inline-block gedrag van de interne elementen */
+/* Standaard (Portretmodus): Blok-weergave, alles onder elkaar */
+#main-container { 
     display: block; 
-    width: 100%; /* Zorgt ervoor dat het bord de volledige breedte kan innemen */
+    width: 100%;
 }
 
 #sidebar {
-    /* Zorg ervoor dat de sidebar als een blok wordt weergegeven */
+    /* Standaard: Onder het speelveld */
     display: block;
-    width: 100%;
-    margin: 10px auto; /* Centreer de sidebar onder het bord */
+    width: 95%; /* Vult bijna de hele breedte */
+    margin: 10px auto; 
     padding: 10px;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
@@ -32,13 +32,11 @@ body {
 
 h1 {
     color: #1e90ff;
-    /* Lettergrootte iets verhoogd voor betere hiërarchie t.o.v. #attempts */
     font-size: 18px;
     margin-bottom: 10px;
 }
 
 #attempts {
-    /* Lettergrootte iets verhoogd om prominent te zijn */
     font-size: 20px;
     margin-bottom: 15px;
 }
@@ -54,43 +52,28 @@ h1 {
 }
 
 #game-board {
-    /* Gewijzigd naar max-width om flexibiliteit toe te staan */
-    max-width: 600px;
-    width: 100%; /* Zorg ervoor dat het board kleiner wordt op kleine schermen */
+    width: 95vw; 
+    max-width: 600px; 
     
+    padding: 5px;
     background: #dde5ec;
-    padding: 0; /* De padding wordt toegevoegd BINNEN de totale 100% breedte/hoogte */
     border-radius: 8px;
-    margin: 0 auto;
+    margin: 0 auto; /* Centreer het bord */
     
-    /* NIEUWE BELANGRIJKE REGEL voor 6x6 vierkant */
-    /* De hoogte (min-height) moet grofweg gelijk zijn aan de breedte */
-    min-height: 90vw; /* Gebruik dezelfde vh/vw-eenheid als de breedte, of een vaste verhouding */
-    
-    /* De min-height moet kleiner zijn dan max-width */
-    max-height: 600px; 
-}
-#aspect-ratio-spacer {
-    padding-bottom: 100%; /* Hoogte is 100% van de breedte van de parent */
-}
-/* FIX: Clearfix om de hoogte te herstellen die verloren gaat door 'float: left' op de kaarten */
-#game-board::after {
-    content: "";
-    display: table;
-    clear: both;
+    /* Belangrijk voor oude browsers om de floats te klaren */
+    overflow: hidden; 
 }
 
-/* 6x6 Portretmodus (moet passen op het scherm) */
+/* *** 6x6 LAY-OUT FIX: GEEN MARGES *** */
 .card {
     float: left;
     margin: 0; 
-    /* DIT IS DE ENIGE CORRECTE WAARDE VOOR 6X6 ZONDER MARGES */
+    /* 100% / 6 = 16.666% (essentieel voor perfecte pasvorm) */
     width: 16.666%; 
-    padding-bottom: 0; /* Hoogte is nu niet meer nodig; container wordt geforceerd door spacer */
+    padding-bottom: 16.666%; /* Hoogte = Breedte (vierkant) */
     
-    position: relative; /* Moet relatief blijven voor de .card-inner */
+    position: relative;
     box-sizing: border-box;
-    /* NIEUW: De clearfix is nu niet meer op de .card */
 }
 
 .card-inner {
@@ -112,41 +95,44 @@ h1 {
     border: 2px solid #1e90ff;
 }
 
+/* Landscapemodus: Zijbalk Rechts van het Speelveld */
 @media (min-width: 800px) {
-    /* LAY-OUT VOOR LANDSCHAP MODUS */
+    
+    /* Centreer de main-container, die nu de inline-block elementen bevat */
     #wrapper {
-        text-align: left;
+        text-align: center;
     }
-
+    
     #main-container {
-        /* De container moet gecentreerd blijven via de #wrapper (inline-block) */
-        display: inline-block; 
-        text-align: left;
-        /* NIEUW: Zorg dat de container links uitgelijnd is in de body */
-        margin: 0 auto;
+        /* Maakt het mogelijk om de kinderen inline-block naast elkaar te plaatsen */
+        display: inline-block;
+        width: auto;
+        /* Zorgt dat de interne elementen links uitlijnen */
+        text-align: left; 
     }
 
     #game-board {
-        display: inline-block; /* Plaats naast de zijbalk */
+        /* Links uitlijnen met de zijbalk ernaast */
+        display: inline-block; 
         vertical-align: top;
-        margin: 0; /* Verwijder auto-centrering marges */
-        /* De 600px max-width is hier de limiet */
-        max-width: 600px; 
-        width: 600px; /* Laat de breedte door max-width bepalen */
+        
+        width: 600px; 
+        max-width: 600px;
+        margin: 0; /* Geen auto-centrering meer */
     }
 
     #sidebar {
-        display: inline-block; /* Plaats naast het speelbord */
+        /* Rechts van het speelveld */
+        display: inline-block;
         vertical-align: top;
-        width: 180px; /* Vaste breedte voor de zijbalk */
-        margin-left: 10px; /* Ruimte tussen bord en zijbalk */
+        width: 180px; 
+        margin: 0;
+        margin-left: 10px;
     }
     
-    /* Zorg ervoor dat de kaarten in landschap ook 6x6 zijn ZONDER MARGES */
+    /* De 6x6 lay-out blijft gehandhaafd */
     .card {
-        margin: 0;
-        width: 16.666%;
+        width: 16.666%; 
         padding-bottom: 16.666%;
     }
-}
 }
