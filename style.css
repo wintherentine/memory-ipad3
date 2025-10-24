@@ -1,99 +1,123 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #eef2f3;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+    font-family: Arial, sans-serif;
+    background: #eef2f3;
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Gebruikt voor het centreren van de inline-block #wrapper */
 }
 
+/* De wrapper wordt gecentreerd door de body text-align: center en zichzelf als inline-block */
 #wrapper {
-  display: inline-block;
-  margin-top: 10px;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 #sidebar {
-  display: inline-block;
-  vertical-align: top;
-  width: 180px;
-  padding: 10px;
-  background: #ffffffcc;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-left: 2px;
+    display: inline-block;
+    vertical-align: top;
+    width: 180px;
+    padding: 10px;
+    /* Gebruik van rgba() voor betere leesbaarheid dan #ffffffcc */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-left: 2px;
 }
 
 h1 {
-  color: #1e90ff;
-  font-size: 16px;
-  margin-bottom: 10px;
+    color: #1e90ff;
+    /* Lettergrootte iets verhoogd voor betere hiërarchie t.o.v. #attempts */
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 #attempts {
-  font-size: 18px;
-  margin-bottom: 15px;
+    /* Lettergrootte iets verhoogd om prominent te zijn */
+    font-size: 20px;
+    margin-bottom: 15px;
 }
 
 #reset-button {
-  background-color: #1e90ff;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 #game-board {
-  width: 600px; /* vaste breedte voor 6 kaarten per rij */
-  max-width: 90vw; /* responsive */
-  background: #dde5ec;
-  padding: 5px;
-  border-radius: 8px;
+    /* Gewijzigd naar max-width om flexibiliteit toe te staan */
+    max-width: 600px;
+    /* Zorg ervoor dat het board kleiner wordt op kleine schermen */
+    width: 90vw;
+    background: #dde5ec;
+    padding: 5px;
+    border-radius: 8px;
+    /* margin: 0 auto; zou hier ook kunnen, maar text-align: center op body is al aanwezig */
+}
+
+/* FIX: Clearfix om de hoogte te herstellen die verloren gaat door 'float: left' op de kaarten */
+#game-board::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .row {
-  clear: both;
+    /* Verwijderd: clear: both; - dit is onnodig en wordt opgelost door de clearfix op #game-board */
 }
 
 .card {
-  float: left;
-  width: 16.66%;       /* 6 kaarten per rij = 100/6 */
-  padding-bottom: 16.66%; /* hoogte = breedte → vierkant */
-  margin: 0;
-  position: relative;
-  box-sizing: border-box;
+    float: left;
+    width: 16.66%;          /* 6 kaarten per rij = 100/6 */
+    padding-bottom: 16.66%; /* hoogte = breedte → vierkant */
+    margin: 0;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .card-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 6px;
-  background-color: #1e90ff;
-  background-image: url('images/back-logo.png');
-  background-size: cover;
-  background-position: center;
-  border: 2px solid white;
-  cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background-color: #1e90ff;
+    background-image: url('images/back-logo.png');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid white;
+    cursor: pointer;
 }
 
 .flipped .card-inner {
-  border: 2px solid #1e90ff;
+    border: 2px solid #1e90ff;
 }
 
 @media (max-width: 800px) {
-  #sidebar {
-    display: block;
-    width: 100%;
-    margin: 10px auto;
-  }
-  #game-board {
-    width: 95vw;
-  }
-  .card {
-    width: 15%;
-    padding-bottom: 15%;
-  }
+    #sidebar {
+        display: block;
+        width: 100%;
+        margin: 10px auto;
+    }
+    /* Het wrapper-element kan nog steeds gecentreerd zijn, maar op mobiel is 100% breedte het beste */
+    #wrapper {
+        display: block;
+        width: 95%; /* Geef de wrapper een vaste breedte */
+        margin: 10px auto; /* Centreer de wrapper zelf */
+    }
+    #game-board {
+        /* De max-width is reeds gedefinieerd; 95vw kan hier dienen als een sterke basis breedte */
+        width: 95vw;
+        max-width: none; /* Reset max-width voor volledige mobiele flexibiliteit */
+        margin: 0 auto; /* Zorg voor centrering op mobiel */
+    }
+    .card {
+        /* Aangepast naar 25% voor 4 kaarten per rij op kleinere schermen */
+        width: 25%;
+        padding-bottom: 25%;
+    }
 }
