@@ -27,7 +27,7 @@ body {
 #sidebar {
     /* Standaard (Portretmodus): Onder het speelveld */
     display: block;
-    width: 90%; /* Vult de breedte van de main-container */
+    width: 100%; /* Vult de breedte van de main-container */
     margin: 10px auto; 
     padding: 10px;
     background: rgba(255, 255, 255, 0.8);
@@ -109,11 +109,13 @@ h1 {
         display: inline-block; 
         width: auto; 
         text-align: left; /* Zorgt dat interne elementen links uitlijnen */
+        overflow: hidden;
     }
 
     #game-board {
         /* Links uitlijnen van de zijbalk */
-        display: inline-block; 
+        float: left;
+        display: block; 
         vertical-align: top;
         
         width: 600px; /* Vaste breedte in Landscapemodus */
@@ -123,7 +125,7 @@ h1 {
 
     #sidebar {
         /* Rechts van het speelveld */
-        display: inline-block;
+        float: left;
         vertical-align: top;
         width: 180px; 
         margin: 0;
@@ -132,7 +134,8 @@ h1 {
     
     /* Kaartbreedte blijft perfect 6x6 */
     .card {
-        width: 16.666%; 
-        padding-bottom: 16.666%;
+        margin: 0.5%
+        width: 15.666%; 
+        padding-bottom: 15.666%;
     }
 }
