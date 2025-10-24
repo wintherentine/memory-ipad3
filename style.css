@@ -106,8 +106,9 @@ h1 {
     
     #main-container {
         /* Maakt het mogelijk om de kinderen inline-block naast elkaar te plaatsen */
-        display: inline-block; 
-        width: auto; 
+        display: block; 
+        width: 800px; 
+        margin: 0 auto;
         text-align: left; /* Zorgt dat interne elementen links uitlijnen */
         overflow: hidden;
     }
@@ -117,7 +118,6 @@ h1 {
         float: left;
         display: block; 
         vertical-align: top;
-        
         width: 600px; /* Vaste breedte in Landscapemodus */
         max-width: 600px;
         margin: 0;
@@ -127,9 +127,9 @@ h1 {
         /* Rechts van het speelveld */
         float: left;
         vertical-align: top;
-        width: 180px; 
+        width: 160px; 
         margin: 0;
-        margin-left: 10px;
+        margin-left: 5px;
     }
     
     /* Kaartbreedte blijft perfect 6x6 */
