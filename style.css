@@ -12,16 +12,21 @@ body {
     margin-top: 10px;
 }
 
+#main-container {
+    /* Blokkeer de float/inline-block gedrag van de interne elementen */
+    display: block; 
+    width: 100%; /* Zorgt ervoor dat het bord de volledige breedte kan innemen */
+}
+
 #sidebar {
-    display: inline-block;
-    vertical-align: top;
-    width: 180px;
+    /* Zorg ervoor dat de sidebar als een blok wordt weergegeven */
+    display: block;
+    width: 100%;
+    margin: 10px auto; /* Centreer de sidebar onder het bord */
     padding: 10px;
-    /* Gebruik van rgba() voor betere leesbaarheid dan #ffffffcc */
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    margin-left: 2px;
 }
 
 h1 {
@@ -48,14 +53,13 @@ h1 {
 }
 
 #game-board {
-    /* Gewijzigd naar max-width om flexibiliteit toe te staan */
+    /* De max-width van 600px is hier nog steeds nuttig in desktop/landschap */
     max-width: 600px;
-    /* Zorg ervoor dat het board kleiner wordt op kleine schermen */
-    width: 90vw;
+    width: 100%; /* Zorgt ervoor dat het bord de volle breedte inneemt in portret */
+    margin: 0 auto; /* Centreert het bord wanneer het smaller is dan 100% */
     background: #dde5ec;
     padding: 5px;
     border-radius: 8px;
-    /* margin: 0 auto; zou hier ook kunnen, maar text-align: center op body is al aanwezig */
 }
 
 /* FIX: Clearfix om de hoogte te herstellen die verloren gaat door 'float: left' op de kaarten */
@@ -69,17 +73,13 @@ h1 {
     /* Verwijderd: clear: both; - dit is onnodig en wordt opgelost door de clearfix op #game-board */
 }
 
+/* 6x6 Portretmodus (moet passen op het scherm) */
 .card {
     float: left;
-    /* NIEUW: Voeg 0.5% marge toe aan links en rechts. Totale marge is 1%. */
-    margin: 1.0% 1.0%;
-    
-    /* AANGEPAST: 16.66% - 1% (marge) = 15.66% */
-    width: 14.66%;
-    
-    /* AANGEPAST: Hoogte moet overeenkomen met de NIEUWE breedte */
-    padding-bottom: 14.66%; 
-    
+    /* NIEUW: Berekening voor 6 kaarten ZONDER MARGES buiten de 100% breedte */
+    margin: 0; 
+    width: 16.666%; /* 100% / 6 = 16.666% */
+    padding-bottom: 16.666%; /* Zorg ervoor dat het vierkant blijft */
     position: relative;
     box-sizing: border-box;
 }
@@ -103,33 +103,35 @@ h1 {
     border: 2px solid #1e90ff;
 }
 
-@media (max-width: 800px) {
-    #sidebar {
-        display: block;
-        width: 100%;
-        margin: 10px auto;
+@media (min-width: 800px) {
+    /* LAY-OUT VOOR LANDSCHAP MODUS */
+
+    #main-container {
+        /* De container moet gecentreerd blijven via de #wrapper (inline-block) */
+        text-align: left; /* Kaartbord en zijbalk links uitlijnen */
     }
-    /* Het wrapper-element kan nog steeds gecentreerd zijn, maar op mobiel is 100% breedte het beste */
-    #wrapper {
-        display: block;
-        width: 95%; /* Geef de wrapper een vaste breedte */
-        margin: 10px auto; /* Centreer de wrapper zelf */
-    }
+
     #game-board {
-        /* De max-width is reeds gedefinieerd; 95vw kan hier dienen als een sterke basis breedte */
-        width: 95vw;
-        max-width: none; /* Reset max-width voor volledige mobiele flexibiliteit */
-        margin: 0 auto; /* Zorg voor centrering op mobiel */
+        display: inline-block; /* Plaats naast de zijbalk */
+        vertical-align: top;
+        margin: 0; /* Verwijder auto-centrering marges */
+        /* De 600px max-width is hier de limiet */
+        max-width: 600px; 
+        width: auto; /* Laat de breedte door max-width bepalen */
     }
-   .card {
-        /* NIEUW: Behoud de 0.5% marge aan weerszijden. Totale marge is 1%. */
-        margin: 1.0%;
-        
-        /* AANGEPAST: 25% - 1% (marge) = 24% */
-        width: 23%;
-        
-        /* AANGEPAST: Hoogte moet overeenkomen met de NIEUWE breedte */
-        padding-bottom: 23%;
+
+    #sidebar {
+        display: inline-block; /* Plaats naast het speelbord */
+        vertical-align: top;
+        width: 180px; /* Vaste breedte voor de zijbalk */
+        margin-left: 10px; /* Ruimte tussen bord en zijbalk */
+    }
+    
+    /* Zorg ervoor dat de kaarten in landschap ook 6x6 zijn ZONDER MARGES */
+    .card {
+        margin: 0;
+        width: 16.666%;
+        padding-bottom: 16.666%;
     }
 }
 }
