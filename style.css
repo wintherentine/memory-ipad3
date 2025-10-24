@@ -3,26 +3,31 @@ body {
     background: #eef2f3;
     margin: 0;
     padding: 0;
-    text-align: center;
+    text-align: center; /* Gebruikt voor het centreren van de #wrapper */
 }
 
-/* De wrapper is nu een container voor de main-container */
+/* De wrapper is de container voor de #main-container */
 #wrapper {
     display: block; 
     width: 100%;
     margin-top: 10px;
+    text-align: center; /* Centreert de main-container */
 }
 
-/* Standaard (Portretmodus): Blok-weergave, alles onder elkaar */
+/* NIEUW: Container voor het wisselen van lay-out */
 #main-container { 
-    display: block; 
-    width: 100%;
+    /* Standaard (Portretmodus): Blok-weergave, vult de beschikbare breedte */
+    display: inline-block; /* Zodat het in de wrapper gecentreerd kan worden */
+    width: 95vw; /* Beperk de breedte in portret */
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center; /* Zorgt dat interne elementen (sidebar/board) centreren indien smaller dan container */
 }
 
 #sidebar {
-    /* Standaard: Onder het speelveld */
+    /* Standaard (Portretmodus): Onder het speelveld */
     display: block;
-    width: 95%; /* Vult bijna de hele breedte */
+    width: 100%; /* Vult de breedte van de main-container */
     margin: 10px auto; 
     padding: 10px;
     background: rgba(255, 255, 255, 0.8);
@@ -52,19 +57,20 @@ h1 {
 }
 
 #game-board {
-    width: 95vw; 
+    /* Vult de breedte van de main-container in portret */
+    width: 100%; 
     max-width: 600px; 
     
     padding: 5px;
     background: #dde5ec;
     border-radius: 8px;
-    margin: 0 auto; /* Centreer het bord */
+    margin: 0 auto;
     
-    /* Belangrijk voor oude browsers om de floats te klaren */
+    /* Belangrijk voor oude browsers om de floats te klaren en de hoogte te garanderen */
     overflow: hidden; 
 }
 
-/* *** 6x6 LAY-OUT FIX: GEEN MARGES *** */
+/* *** 6x6 LAY-OUT FIX: GEEN MARGES EN EXACTE BREEDTE *** */
 .card {
     float: left;
     margin: 0; 
@@ -95,30 +101,24 @@ h1 {
     border: 2px solid #1e90ff;
 }
 
-/* Landscapemodus: Zijbalk Rechts van het Speelveld */
+/* Media Query: Landschapsmodus (Zijbalk Rechts) */
 @media (min-width: 800px) {
-    
-    /* Centreer de main-container, die nu de inline-block elementen bevat */
-    #wrapper {
-        text-align: center;
-    }
     
     #main-container {
         /* Maakt het mogelijk om de kinderen inline-block naast elkaar te plaatsen */
-        display: inline-block;
-        width: auto;
-        /* Zorgt dat de interne elementen links uitlijnen */
-        text-align: left; 
+        display: inline-block; 
+        width: auto; 
+        text-align: left; /* Zorgt dat interne elementen links uitlijnen */
     }
 
     #game-board {
-        /* Links uitlijnen met de zijbalk ernaast */
+        /* Links uitlijnen van de zijbalk */
         display: inline-block; 
         vertical-align: top;
         
-        width: 600px; 
+        width: 600px; /* Vaste breedte in Landscapemodus */
         max-width: 600px;
-        margin: 0; /* Geen auto-centrering meer */
+        margin: 0;
     }
 
     #sidebar {
@@ -130,7 +130,7 @@ h1 {
         margin-left: 10px;
     }
     
-    /* De 6x6 lay-out blijft gehandhaafd */
+    /* Kaartbreedte blijft perfect 6x6 */
     .card {
         width: 16.666%; 
         padding-bottom: 16.666%;
