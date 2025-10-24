@@ -45,25 +45,26 @@ h1 {
 }
 
 #game-board {
-  width: calc(100vw - 200px);
+  width: calc(100vw - 200px); /* reserveer ruimte voor sidebar */
   max-width: 95vh; /* past binnen schermhoogte */
 }
 
 .row {
-  display: flex;
-  justify-content: center;
+  overflow: hidden; /* clear floats */
+  margin-bottom: 5px;
 }
 
 .card {
-  width: 15%;
-  padding-bottom: 15%; /* vierkant */
+  float: left;
+  width: 15%;           /* 6 kaarten per rij + marge */
+  padding-bottom: 15%;  /* hoogte = breedte */
   margin: 0.5%;
   border-radius: 6px;
   background-color: #1e90ff;
-  cursor: pointer;
   background-size: cover;
   background-position: center;
   border: 2px solid white;
+  cursor: pointer;
 }
 
 .flipped {
