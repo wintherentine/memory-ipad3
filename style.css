@@ -19,7 +19,7 @@ body {
     /* Standaard (Portretmodus): Blok-weergave, vult de beschikbare breedte */
     display: inline-block; /* Zodat het in de wrapper gecentreerd kan worden */
     width: 95vw; /* Beperk de breedte in portret */
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     text-align: center; /* Zorgt dat interne elementen (sidebar/board) centreren indien smaller dan container */
 }
@@ -59,7 +59,7 @@ h1 {
 #game-board {
     /* Vult de breedte van de main-container in portret */
     width: 100%; 
-    max-width: 600px; 
+    max-width: 800px; 
     
     padding: 5px;
     background: #dde5ec;
