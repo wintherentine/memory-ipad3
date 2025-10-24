@@ -21,23 +21,21 @@ function initGame() {
   attempts = 0;
   attemptsDisplay.innerHTML = "Aantal pogingen: 0";
 
-  for (var r=0;r<6;r++) {
-    var row = document.createElement("div");
-    row.className = "row";
-    for (var c=0;c<6;c++) {
-      var index = r*6 + c;
-      var card = document.createElement("div");
-      card.className = "card";
+  // De lussen zijn gecombineerd om alle 36 kaarten direct toe te voegen aan het bord
+  for (var i = 0; i < cards.length; i++) { // cards.length is 36
+    var index = i;
+    var card = document.createElement("div");
+    card.className = "card";
 
-      var inner = document.createElement("div");
-      inner.className = "card-inner";
-      inner.setAttribute("data-value", cards[index]);
-      inner.onclick = flipCard;
+    var inner = document.createElement("div");
+    inner.className = "card-inner";
+    inner.setAttribute("data-value", cards[index]);
+    inner.onclick = flipCard;
 
-      card.appendChild(inner);
-      row.appendChild(card);
-    }
-    board.appendChild(row);
+    inner.style.backgroundImage = "url('images/back-logo.png')"; // Zorgt dat ze verborgen zijn bij reset
+
+    card.appendChild(inner);
+    board.appendChild(card); // Voeg de kaart direct toe aan het game-board
   }
 }
 
