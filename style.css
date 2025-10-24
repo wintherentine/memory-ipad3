@@ -17,12 +17,12 @@ body {
   background: #ffffffcc;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-left: 10px;
+  margin-left: 2px;
 }
 h1 {
   color: #1e90ff;
   font-size: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 #attempts {
   font-size: 18px;
@@ -39,7 +39,7 @@ h1 {
 }
 #game-board {
   display: inline-block;
-  width: 80vw;
+  width: 90vw;
   max-width: 750px;
   background: #dde5ec;
   padding: 5px;
