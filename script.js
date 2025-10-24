@@ -8,17 +8,7 @@ var cards = [];
 var attempts = 0;
 
 function initGame() {
-  var values = [];
-  for (var i=1;i<=18;i++) values.push(i); // 18 paren
-  cards = values.concat(values); // totaal 36 kaarten
-  cards.sort(function(){ return 0.5 - Math.random(); });
-
   board.innerHTML = "";
-  flipped = [];
-  matched = [];
-  attempts = 0;
-  attemptsDisplay.innerHTML = "Aantal pogingen: 0";
-
 for (var r=0;r<6;r++) {
   var row = document.createElement("div");
   row.className = "row";
@@ -32,7 +22,8 @@ for (var r=0;r<6;r++) {
     row.appendChild(card);
   }
   board.appendChild(row);
-    }
+}
+
   }
 }
 
