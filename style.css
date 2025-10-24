@@ -71,9 +71,15 @@ h1 {
 
 .card {
     float: left;
-    width: 16.66%;          /* 6 kaarten per rij = 100/6 */
-    padding-bottom: 16.66%; /* hoogte = breedte → vierkant */
-    margin: 0;
+    /* NIEUW: Voeg 0.5% marge toe aan links en rechts. Totale marge is 1%. */
+    margin: 0.5% 0.5%;
+    
+    /* AANGEPAST: 16.66% - 1% (marge) = 15.66% */
+    width: 15.66%;
+    
+    /* AANGEPAST: Hoogte moet overeenkomen met de NIEUWE breedte */
+    padding-bottom: 15.66%; 
+    
     position: relative;
     box-sizing: border-box;
 }
@@ -115,9 +121,15 @@ h1 {
         max-width: none; /* Reset max-width voor volledige mobiele flexibiliteit */
         margin: 0 auto; /* Zorg voor centrering op mobiel */
     }
-    .card {
-        /* Aangepast naar 25% voor 4 kaarten per rij op kleinere schermen */
-        width: 25%;
-        padding-bottom: 25%;
+   .card {
+        /* NIEUW: Behoud de 0.5% marge aan weerszijden. Totale marge is 1%. */
+        margin: 0.5%;
+        
+        /* AANGEPAST: 25% - 1% (marge) = 24% */
+        width: 24%;
+        
+        /* AANGEPAST: Hoogte moet overeenkomen met de NIEUWE breedte */
+        padding-bottom: 24%;
     }
+}
 }
