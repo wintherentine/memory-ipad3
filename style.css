@@ -27,7 +27,7 @@ body {
 #sidebar {
     /* Standaard (Portretmodus): Onder het speelveld */
     display: block;
-    width: 100%; /* Vult de breedte van de main-container */
+    width: 90%; /* Vult de breedte van de main-container */
     margin: 10px auto; 
     padding: 10px;
     background: rgba(255, 255, 255, 0.8);
