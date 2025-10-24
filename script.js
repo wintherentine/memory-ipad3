@@ -20,8 +20,6 @@ function initGame() {
   attemptsDisplay.innerHTML = "Aantal pogingen: 0";
 
   for (var r=0;r<6;r++) {
-    var row = document.createElement("div");
-    row.className = "row";
     for (var c=0;c<6;c++) {
       var index = r*6 + c;
       var card = document.createElement("div");
@@ -29,9 +27,8 @@ function initGame() {
       card.style.backgroundImage = "url('images/back.jpg')";
       card.setAttribute("data-value", cards[index]);
       card.onclick = flipCard;
-      row.appendChild(card);
+      board.appendChild(card);
     }
-    board.appendChild(row);
   }
 }
 
@@ -44,7 +41,7 @@ function flipCard() {
     if (flipped.length===2) {
       attempts++;
       attemptsDisplay.innerHTML = "Aantal pogingen: "+attempts;
-      setTimeout(checkMatch, 1000); // foute combinaties 1 seconde zichtbaar
+      setTimeout(checkMatch, 1000); // 1 seconde zichtbaar
     }
   }
 }
