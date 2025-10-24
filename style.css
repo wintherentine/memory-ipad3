@@ -10,6 +10,7 @@ body {
 #wrapper {
     display: inline-block;
     margin-top: 10px;
+    overflow: hidden;
 }
 
 #main-container {
@@ -55,10 +56,10 @@ h1 {
 #game-board {
     /* Gewijzigd naar max-width om flexibiliteit toe te staan */
     max-width: 600px;
-    width: 90vw; /* Zorg ervoor dat het board kleiner wordt op kleine schermen */
+    width: 100%; /* Zorg ervoor dat het board kleiner wordt op kleine schermen */
     
     background: #dde5ec;
-    padding: 5px; /* De padding wordt toegevoegd BINNEN de totale 100% breedte/hoogte */
+    padding: 0; /* De padding wordt toegevoegd BINNEN de totale 100% breedte/hoogte */
     border-radius: 8px;
     margin: 0 auto;
     
@@ -68,11 +69,10 @@ h1 {
     
     /* De min-height moet kleiner zijn dan max-width */
     max-height: 600px; 
-    
-    /* De Clearfix moet nu de hoogte van de gevloten kaarten bevatten */
-    overflow: hidden; /* Betere/simpelere manier om floats te klaren op oude browsers */
 }
-
+#aspect-ratio-spacer {
+    padding-bottom: 100%; /* Hoogte is 100% van de breedte van de parent */
+}
 /* FIX: Clearfix om de hoogte te herstellen die verloren gaat door 'float: left' op de kaarten */
 #game-board::after {
     content: "";
@@ -84,10 +84,13 @@ h1 {
 .card {
     float: left;
     margin: 0; 
-    width: 16.666%; /* 100% / 6 */
-    padding-bottom: 16.666%; 
-    position: relative;
+    /* DIT IS DE ENIGE CORRECTE WAARDE VOOR 6X6 ZONDER MARGES */
+    width: 16.666%; 
+    padding-bottom: 0; /* Hoogte is nu niet meer nodig; container wordt geforceerd door spacer */
+    
+    position: relative; /* Moet relatief blijven voor de .card-inner */
     box-sizing: border-box;
+    /* NIEUW: De clearfix is nu niet meer op de .card */
 }
 
 .card-inner {
@@ -111,10 +114,16 @@ h1 {
 
 @media (min-width: 800px) {
     /* LAY-OUT VOOR LANDSCHAP MODUS */
+    #wrapper {
+        text-align: left;
+    }
 
     #main-container {
         /* De container moet gecentreerd blijven via de #wrapper (inline-block) */
-        text-align: left; /* Kaartbord en zijbalk links uitlijnen */
+        display: inline-block; 
+        text-align: left;
+        /* NIEUW: Zorg dat de container links uitgelijnd is in de body */
+        margin: 0 auto;
     }
 
     #game-board {
@@ -123,10 +132,7 @@ h1 {
         margin: 0; /* Verwijder auto-centrering marges */
         /* De 600px max-width is hier de limiet */
         max-width: 600px; 
-        min-height: 500px; /* Vaste hoogte op basis van de 600px max-width (- padding) */
-        max-height: 600px;
-        height: auto;
-        width: auto; /* Laat de breedte door max-width bepalen */
+        width: 600px; /* Laat de breedte door max-width bepalen */
     }
 
     #sidebar {
