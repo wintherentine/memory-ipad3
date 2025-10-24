@@ -21,9 +21,9 @@ function initGame() {
   attempts = 0;
   attemptsDisplay.innerHTML = "Aantal pogingen: 0";
 
-  // De lussen zijn gecombineerd om alle 36 kaarten direct toe te voegen aan het bord
-  for (var i = 0; i < cards.length; i++) { // cards.length is 36
-    var index = i;
+  // FIX: GEEN RIJ-ELEMENTEN MEER. Voeg alle 36 kaarten direct toe aan het bord.
+  for (var i = 0; i < cards.length; i++) { 
+    var index = i; 
     var card = document.createElement("div");
     card.className = "card";
 
@@ -32,15 +32,17 @@ function initGame() {
     inner.setAttribute("data-value", cards[index]);
     inner.onclick = flipCard;
 
-    inner.style.backgroundImage = "url('images/back-logo.png')"; // Zorgt dat ze verborgen zijn bij reset
+    // Zorgt ervoor dat de achtergrond bij reset correct is
+    inner.style.backgroundImage = "url('images/back-logo.png')"; 
 
     card.appendChild(inner);
-    board.appendChild(card); // Voeg de kaart direct toe aan het game-board
+    board.appendChild(card); // Kaart direct toevoegen aan het game-board
   }
 }
 
 // kaart omdraaien
 function flipCard() {
+  // Controleert of er al minder dan 2 kaarten omgedraaid zijn, of de kaart al gematcht is, of al omgedraaid is.
   if (flipped.length<2 && matched.indexOf(this)===-1 && this.className.indexOf("flipped")===-1) {
     this.classList.add("flipped");
     this.style.backgroundImage = "url('images/"+this.getAttribute("data-value")+".jpg')";
@@ -62,6 +64,7 @@ function checkMatch() {
   if (a.getAttribute("data-value") === b.getAttribute("data-value")) {
     matched.push(a,b);
   } else {
+    // Verwijder de flipped class en herstel de achtergrond
     a.classList.remove("flipped");
     b.classList.remove("flipped");
     a.style.backgroundImage = "url('images/back-logo.png')";
