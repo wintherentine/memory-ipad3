@@ -9,9 +9,8 @@ var attempts = 0;
 
 function initGame() {
   var values = [];
-  for (var i=1;i<=12;i++) values.push(i); // 12 paren
-  values.push(13); // extra kaart om 25 kaarten te maken
-  cards = values.concat(values); // totaal 25 kaarten
+  for (var i=1;i<=18;i++) values.push(i); // 18 paren
+  cards = values.concat(values); // totaal 36 kaarten
   cards.sort(function(){ return 0.5 - Math.random(); });
 
   board.innerHTML = "";
@@ -20,11 +19,11 @@ function initGame() {
   attempts = 0;
   attemptsDisplay.innerHTML = "Aantal pogingen: 0";
 
-  for (var r=0;r<5;r++) {
+  for (var r=0;r<6;r++) {
     var row = document.createElement("div");
     row.className = "row";
-    for (var c=0;c<5;c++) {
-      var index = r*5 + c;
+    for (var c=0;c<6;c++) {
+      var index = r*6 + c;
       var card = document.createElement("div");
       card.className = "card";
       card.style.backgroundImage = "url('images/back.jpg')";
@@ -45,7 +44,7 @@ function flipCard() {
     if (flipped.length===2) {
       attempts++;
       attemptsDisplay.innerHTML = "Aantal pogingen: "+attempts;
-      setTimeout(checkMatch, 1000); // 1,0 seconden voor foute combinaties
+      setTimeout(checkMatch, 1000); // foute combinaties 1 seconde zichtbaar
     }
   }
 }
