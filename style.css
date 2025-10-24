@@ -53,13 +53,24 @@ h1 {
 }
 
 #game-board {
-    /* De max-width van 600px is hier nog steeds nuttig in desktop/landschap */
+    /* Gewijzigd naar max-width om flexibiliteit toe te staan */
     max-width: 600px;
-    width: 100%; /* Zorgt ervoor dat het bord de volle breedte inneemt in portret */
-    margin: 0 auto; /* Centreert het bord wanneer het smaller is dan 100% */
+    width: 90vw; /* Zorg ervoor dat het board kleiner wordt op kleine schermen */
+    
     background: #dde5ec;
-    padding: 5px;
+    padding: 5px; /* De padding wordt toegevoegd BINNEN de totale 100% breedte/hoogte */
     border-radius: 8px;
+    margin: 0 auto;
+    
+    /* NIEUWE BELANGRIJKE REGEL voor 6x6 vierkant */
+    /* De hoogte (min-height) moet grofweg gelijk zijn aan de breedte */
+    min-height: 90vw; /* Gebruik dezelfde vh/vw-eenheid als de breedte, of een vaste verhouding */
+    
+    /* De min-height moet kleiner zijn dan max-width */
+    max-height: 600px; 
+    
+    /* De Clearfix moet nu de hoogte van de gevloten kaarten bevatten */
+    overflow: hidden; /* Betere/simpelere manier om floats te klaren op oude browsers */
 }
 
 /* FIX: Clearfix om de hoogte te herstellen die verloren gaat door 'float: left' op de kaarten */
@@ -72,9 +83,8 @@ h1 {
 /* 6x6 Portretmodus (moet passen op het scherm) */
 .card {
     float: left;
-    /* Zorg voor EXACT 1/6e breedte en geen marges om te passen! */
     margin: 0; 
-    width: 16.666%;
+    width: 16.666%; /* 100% / 6 */
     padding-bottom: 16.666%; 
     position: relative;
     box-sizing: border-box;
@@ -113,6 +123,9 @@ h1 {
         margin: 0; /* Verwijder auto-centrering marges */
         /* De 600px max-width is hier de limiet */
         max-width: 600px; 
+        min-height: 500px; /* Vaste hoogte op basis van de 600px max-width (- padding) */
+        max-height: 600px;
+        height: auto;
         width: auto; /* Laat de breedte door max-width bepalen */
     }
 
